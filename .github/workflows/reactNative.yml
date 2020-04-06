@@ -1,0 +1,22 @@
+name: React Native CI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  ci:
+    name: React Native CI
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: git
+        uses: actions/checkout@v2
+      - name: npm
+        uses: actions/setup-node@v1
+        run: npm install
+      - name: build android
+        uses: actions/setup-java@v1
+          with:
+            java-version: 1.8
+        run: ./gradlew assembleDebug
+
+
